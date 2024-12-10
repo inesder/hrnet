@@ -1,4 +1,5 @@
 import '../styles/styles.css';
+import Calendar from '../components/Calendar'
 
 function CreateEmployee(){
 return(
@@ -17,10 +18,10 @@ return(
                 <input type="text" id="last-name" />
 
                 <label htmlFor="date-of-birth">Date of Birth</label>
-                <input id="date-of-birth" type="text" />
+                <Calendar />
 
                 <label htmlFor="start-date">Start Date</label>
-                <input id="start-date" type="text" />
+                <Calendar />
 
                 <fieldset className="address">
                     <legend>Address</legend>
