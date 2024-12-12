@@ -2,11 +2,16 @@ import '../styles/styles.css';
 import Calendar from '../components/Calendar';
 import DropDownMenu from '../components/DropDownMenu';
 import states from '../datas/states.json'; 
+import Modal from '../components/Modal';
+import useModal from '../useModal'
 
 function CreateEmployee() {
   const handleStateChange = (selectedState) => {
     console.log('Selected state:', selectedState);
   };
+
+
+  const { isShowing, toggle } = useModal();
 
   return (
     <div>
@@ -59,7 +64,8 @@ function CreateEmployee() {
           </select>
         </form>
 
-        <button onClick={() => console.log('Employee Saved')}>Save</button>
+        <button className="modal-toggle" onClick={toggle}>Save</button>
+        <Modal isShowing={isShowing} hide={toggle} />
       </div>
     </div>
   );
