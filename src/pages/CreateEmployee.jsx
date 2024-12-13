@@ -3,15 +3,19 @@ import Calendar from '../components/Calendar';
 import DropDownMenu from '../components/DropDownMenu';
 import states from '../datas/states.json'; 
 import Modal from '../components/Modal';
-import useModal from '../useModal'
+import useModal from '../useModal';
+import { useDispatch } from 'react-redux';
+import { addEmployee } from '../redux/employeeSlice';
+import states from '../datas/states.json';
 
 function CreateEmployee() {
   const handleStateChange = (selectedState) => {
     console.log('Selected state:', selectedState);
   };
 
-
   const { isShowing, toggle } = useModal();
+
+  
 
   return (
     <div>
