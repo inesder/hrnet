@@ -1,8 +1,10 @@
 import '../styles/styles.css';
 import Table from "../components/Table";
-
+import { useSelector } from 'react-redux';
 
 function EmployeeList(){
+    const employees = useSelector((state) => state.employees.employees);
+    console.log('Employees in Redux:', employees);
     const theadData = ["First Name", "Last Name", "Start Date", 'Department', "Date of Birth", "Street", "City", "State", "Zip Code"];
 
     const tbodyData = [
@@ -12,9 +14,9 @@ function EmployeeList(){
         }
     ];
 return(
-        <div id="employee-div" class="container">
+        <div id="employee-div" className="container">
             <h1>Current Employees</h1>
-            <table id="employee-table" class="display"></table>
+            <table id="employee-table" className="display"></table>
             <a href="index.html">Home</a>
             <Table theadData={theadData} tbodyData={tbodyData} />
         </div>

@@ -27,7 +27,7 @@ export default function DropDownMenu({ label, data, onChange }) {
           onChange={handleChange}
         >
           {data.map((item) => (
-            <MenuItem value={item.name}>
+            <MenuItem value={item.name} key={item.abbreviation}>
               {item.name}
             </MenuItem>
           ))}

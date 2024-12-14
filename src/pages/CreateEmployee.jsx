@@ -5,17 +5,23 @@ import states from '../datas/states.json';
 import Modal from '../components/Modal';
 import useModal from '../useModal';
 import { useDispatch } from 'react-redux';
-import { addEmployee } from '../redux/employeeSlice';
-import states from '../datas/states.json';
+import { useNavigate } from 'react-router-dom'
+import { addEmployee } from '../features/employeeSlice';
+import { useForm } from 'react-hook-form'
 
 function CreateEmployee() {
-  const handleStateChange = (selectedState) => {
-    console.log('Selected state:', selectedState);
-  };
+  const dispatch = useDispatch()
+  const { register, handleSubmit, setValue } = useForm()
+  const navigate = useNavigate()
 
   const { isShowing, toggle } = useModal();
-
   
+  const submitForm =  (data) => {
+    console.log(data);
+    dispatch(addEmployee(data));
+    alert('Employee added successfully!');
+    navigate('/employeelist');
+  }
 
   return (
     <div>
@@ -25,50 +31,82 @@ function CreateEmployee() {
       <div className="container">
         <a href="employee-list.html">View Current Employees</a>
         <h2>Create Employee</h2>
-        <form action="#" id="create-employee">
+        <form onSubmit={handleSubmit(submitForm)}>
           <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first-name" />
+          <input
+            type="text"
+            id="first-name"
+            {...register('firstName', { required: true })} // Connexion avec react-hook-form
+          />
 
           <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" />
+          <input
+            type="text"
+            id="last-name"
+            {...register('lastName', { required: true })} // Connexion avec react-hook-form
+          />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <Calendar />
+          {/* Le composant Calendar passe sa valeur via onChange */}
+          <Calendar
+            onChange={(value) => setValue('dateOfBirth', value)} // Met à jour manuellement la valeur dans le formulaire
+          />
 
           <label htmlFor="start-date">Start Date</label>
-          <Calendar />
+          {/* Le composant Calendar passe sa valeur via onChange */}
+          <Calendar
+            onChange={(value) => setValue('startDate', value)} // Met à jour manuellement la valeur dans le formulaire
+          />
 
           <fieldset className="address">
             <legend>Address</legend>
 
             <label htmlFor="street">Street</label>
-            <input id="street" type="text" />
+            <input
+              type="text"
+              id="street"
+              {...register('street', { required: true })} // Connexion avec react-hook-form
+            />
 
             <label htmlFor="city">City</label>
-            <input id="city" type="text" />
+            <input
+              type="text"
+              id="city"
+              {...register('city', { required: true })} // Connexion avec react-hook-form
+            />
 
             <label htmlFor="state">State</label>
+            {/* Le composant DropDownMenu passe sa valeur via onChange */}
             <DropDownMenu
               label="State"
               data={states}
-              onChange={handleStateChange}
+              onChange={(value) => setValue('state', value)} // Met à jour manuellement la valeur dans le formulaire
             />
 
             <label htmlFor="zip-code">Zip Code</label>
-            <input id="zip-code" type="number" />
+            <input
+              type="number"
+              id="zip-code"
+              {...register('zipCode', { required: true })} // Connexion avec react-hook-form
+            />
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select name="department" id="department">
+          <select
+            id="department"
+            {...register('department', { required: true })} // Connexion avec react-hook-form
+          >
             <option>Sales</option>
             <option>Marketing</option>
             <option>Engineering</option>
             <option>Human Resources</option>
             <option>Legal</option>
           </select>
-        </form>
 
-        <button className="modal-toggle" onClick={toggle}>Save</button>
+          <button onClick={toggle} type="submit" className="modal-toggle">
+            Save
+          </button>
+        </form>
         <Modal isShowing={isShowing} hide={toggle} />
       </div>
     </div>
