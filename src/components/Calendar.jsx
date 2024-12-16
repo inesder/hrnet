@@ -3,10 +3,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
-function Calendar() {
+function Calendar({ value, onChange }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker />
+      <DatePicker
+      value={value|| null}
+      onChange={(newValue) => onChange(newValue?.format('YYYY-MM-DD'))}
+      />
     </LocalizationProvider>
   );
 }

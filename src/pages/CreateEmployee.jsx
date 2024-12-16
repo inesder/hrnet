@@ -19,7 +19,6 @@ function CreateEmployee() {
   const submitForm =  (data) => {
     console.log(data);
     dispatch(addEmployee(data));
-    alert('Employee added successfully!');
     navigate('/employeelist');
   }
 
