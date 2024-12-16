@@ -5,22 +5,25 @@ import states from '../datas/states.json';
 import Modal from '../components/Modal';
 import useModal from '../useModal';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { addEmployee } from '../features/employeeSlice';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 
 function CreateEmployee() {
-  const dispatch = useDispatch()
-  const { register, handleSubmit, setValue } = useForm()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm(); // Ajout de formState pour gérer les erreurs
+  const navigate = useNavigate();
 
   const { isShowing, toggle } = useModal();
   
-  const submitForm =  (data) => {
-    console.log(data);
-    dispatch(addEmployee(data));
-    navigate('/employeelist');
-  }
+  const submitForm = (data) => {
+    console.log('Form Data:', data);
+    dispatch(addEmployee(data)); // Envoie les données à Redux
+    toggle(); // Affiche la modale
+    setTimeout(() => {
+      navigate('/employeelist'); // Redirige après un délai
+    }, 2000); // Attendez 2 secondes pour laisser le temps d'afficher la modale
+  };
 
   return (
     <div>
@@ -35,27 +38,29 @@ function CreateEmployee() {
           <input
             type="text"
             id="first-name"
-            {...register('firstName', { required: true })} // Connexion avec react-hook-form
+            {...register('firstName', { required: 'First Name is required' })} // Message d'erreur
           />
+          {errors.firstName && <span>{errors.firstName.message}</span>} {/* Affiche une erreur si nécessaire */}
 
           <label htmlFor="last-name">Last Name</label>
           <input
             type="text"
             id="last-name"
-            {...register('lastName', { required: true })} // Connexion avec react-hook-form
+            {...register('lastName', { required: 'Last Name is required' })}
           />
+          {errors.lastName && <span>{errors.lastName.message}</span>}
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          {/* Le composant Calendar passe sa valeur via onChange */}
           <Calendar
-            onChange={(value) => setValue('dateOfBirth', value)} // Met à jour manuellement la valeur dans le formulaire
+            onChange={(value) => setValue('dateOfBirth', value, { shouldValidate: true })} // Active la validation
           />
+          {errors.dateOfBirth && <span>Date of Birth is required</span>}
 
           <label htmlFor="start-date">Start Date</label>
-          {/* Le composant Calendar passe sa valeur via onChange */}
           <Calendar
-            onChange={(value) => setValue('startDate', value)} // Met à jour manuellement la valeur dans le formulaire
+            onChange={(value) => setValue('startDate', value, { shouldValidate: true })}
           />
+          {errors.startDate && <span>Start Date is required</span>}
 
           <fieldset className="address">
             <legend>Address</legend>
@@ -64,45 +69,50 @@ function CreateEmployee() {
             <input
               type="text"
               id="street"
-              {...register('street', { required: true })} // Connexion avec react-hook-form
+              {...register('street', { required: 'Street is required' })}
             />
+            {errors.street && <span>{errors.street.message}</span>}
 
             <label htmlFor="city">City</label>
             <input
               type="text"
               id="city"
-              {...register('city', { required: true })} // Connexion avec react-hook-form
+              {...register('city', { required: 'City is required' })}
             />
+            {errors.city && <span>{errors.city.message}</span>}
 
             <label htmlFor="state">State</label>
-            {/* Le composant DropDownMenu passe sa valeur via onChange */}
             <DropDownMenu
               label="State"
               data={states}
-              onChange={(value) => setValue('state', value)} // Met à jour manuellement la valeur dans le formulaire
+              onChange={(value) => setValue('state', value, { shouldValidate: true })}
             />
+            {errors.state && <span>State is required</span>}
 
             <label htmlFor="zip-code">Zip Code</label>
             <input
               type="number"
               id="zip-code"
-              {...register('zipCode', { required: true })} // Connexion avec react-hook-form
+              {...register('zipCode', { required: 'Zip Code is required' })}
             />
+            {errors.zipCode && <span>{errors.zipCode.message}</span>}
           </fieldset>
 
           <label htmlFor="department">Department</label>
           <select
             id="department"
-            {...register('department', { required: true })} // Connexion avec react-hook-form
+            {...register('department', { required: 'Department is required' })}
           >
+            <option value="">Select a department</option>
             <option>Sales</option>
             <option>Marketing</option>
             <option>Engineering</option>
             <option>Human Resources</option>
             <option>Legal</option>
           </select>
+          {errors.department && <span>{errors.department.message}</span>}
 
-          <button onClick={toggle} type="submit" className="modal-toggle">
+          <button type="submit" className="modal-toggle">
             Save
           </button>
         </form>
