@@ -11,7 +11,7 @@ const employeeSlice = createSlice({
         addEmployee: (state, action) => {
             state.employees.push(action.payload)
         },
-        clearEmployee: (state) => {
+        clearEmployees: (state) => {
             state.employees = [];
         },
     },

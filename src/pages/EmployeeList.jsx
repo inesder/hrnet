@@ -2,7 +2,8 @@ import '../styles/styles.css';
 import Table from "../components/Table";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { clearEmployees } from '../features/employeeSlice'
 
 function EmployeeList() {
     const employees = useSelector((state) => state.employees.employees);
@@ -25,6 +26,10 @@ function EmployeeList() {
             employee.zipCode
         ]
     })) : [];
+    const dispatch = useDispatch();
+    const handleClearEmployees = () => {
+        dispatch(clearEmployees())
+    }
 
     return (
         <div id="employee-div" className="container">
@@ -35,6 +40,7 @@ function EmployeeList() {
                 <Table theadData={theadData} tbodyData={tbodyData} />
             )}
             <Link to="/">Home</Link>
+            <button onClick={handleClearEmployees}> delete</button>
         </div>
     );
 }
