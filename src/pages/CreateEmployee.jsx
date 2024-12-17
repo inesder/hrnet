@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addEmployee } from '../features/employeeSlice';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+
 
 function CreateEmployee() {
   const dispatch = useDispatch();
@@ -31,7 +33,7 @@ function CreateEmployee() {
         <h1>HRnet</h1>
       </div>
       <div className="container">
-        <a href="employee-list.html">View Current Employees</a>
+      <Link to="/employeelist">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form onSubmit={handleSubmit(submitForm)}>
           <label htmlFor="first-name">First Name</label>

@@ -1,6 +1,8 @@
 import '../styles/styles.css';
 import Table from "../components/Table";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 function EmployeeList() {
     const employees = useSelector((state) => state.employees.employees);
@@ -32,7 +34,7 @@ function EmployeeList() {
             ) : (
                 <Table theadData={theadData} tbodyData={tbodyData} />
             )}
-            <a href="index.html">Home</a>
+            <Link to="/">Home</Link>
         </div>
     );
 }
