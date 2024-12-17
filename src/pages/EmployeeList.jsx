@@ -37,7 +37,7 @@ function EmployeeList() {
             {employees.length === 0 ? (
                 <p>No employees found. Please add some employees!</p>
             ) : (
-                <Table theadData={theadData} tbodyData={tbodyData} />
+                <Table theadData={theadData} tbodyData={tbodyData} customClass="employees"/>
             )}
             <Link to="/">Home</Link>
             <button onClick={handleClearEmployees}> delete</button>

@@ -7,15 +7,15 @@ const Table = ({ theadData, tbodyData, customClass }) => {
         <table className={customClass}>
             <thead>
                 <tr>
-                    {theadData.map((h) => {
-                        return <TableHeadItem key={h} item={h} />;
-                    })}
+                    {theadData.map((h) => (
+                        <TableHeadItem key={h} item={h} />
+                    ))}
                 </tr>
             </thead>
             <tbody>
-                {tbodyData.map((item) => {
-                    return <TableRow key={item.id} data={item.items} />;
-                })}
+                {tbodyData.map((item) => (
+                    <TableRow key={item.id} data={item.items} />
+                ))}
             </tbody>
         </table>
     );
