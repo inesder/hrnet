@@ -25,7 +25,10 @@ function EmployeeList() {
             employee.state,
             employee.zipCode
         ]
-    })) : [];
+    })) : [ {
+        id: "0",
+        items: ["No employees found.", "", "", "", "", "", "", "", ""]
+    },];
     const dispatch = useDispatch();
     const handleClearEmployees = () => {
         dispatch(clearEmployees())
@@ -34,11 +37,7 @@ function EmployeeList() {
     return (
         <div id="employee-div" className="container">
             <h1>Current Employees</h1>
-            {employees.length === 0 ? (
-                <p>No employees found. Please add some employees!</p>
-            ) : (
-                <Table theadData={theadData} tbodyData={tbodyData} customClass="employees"/>
-            )}
+            <Table theadData={theadData} tbodyData={tbodyData} customClass="employees"/>
             <Link to="/">Home</Link>
             <button onClick={handleClearEmployees}> delete</button>
         </div>
