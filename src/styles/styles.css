@@ -73,6 +73,10 @@ label {
     background: transparent;
   }
 
+  .table-container {
+    width:75%;
+  }
+
   .employees {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
