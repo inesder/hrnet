@@ -105,3 +105,28 @@ label {
     cursor: pointer;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  background-color: #04AA6D;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 14px;
+}

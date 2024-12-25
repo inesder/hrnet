@@ -7,6 +7,8 @@ const Table = ({ theadData, tbodyData, customClass }) => {
     const [sortedData, setSortedData] = useState(tbodyData);
     const [sortDirection, setSortDirection] = useState("asc");
     const [sortedColumn, setSortedColumn] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1); 
+    const rowsPerPage = 4;
 
     const handleFilterChange = (e) => {
         setFilterText(e.target.value.toLowerCase());
@@ -33,6 +35,24 @@ const Table = ({ theadData, tbodyData, customClass }) => {
         )
     );
 
+    const indexOfLastRow = currentPage * rowsPerPage;
+    const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+    const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+
+    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
     return (
         <div className="table-container">
             <input
@@ -57,8 +77,8 @@ const Table = ({ theadData, tbodyData, customClass }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredData.length > 0 ? (
-                        filteredData.map((item) => (
+                    {currentRows.length > 0 ? (
+                        currentRows.map((item) => (
                             <TableRow key={item.id} data={item.items} />
                         ))
                     ) : (
@@ -70,6 +90,18 @@ const Table = ({ theadData, tbodyData, customClass }) => {
                     )}
                 </tbody>
             </table>
+            {/* Boutons de Pagination */}
+            <div className="pagination">
+                <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                    Previous
+                </button>
+                <span>
+                    Page {currentPage} of {totalPages}
+                </span>
+                <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                    Next
+                </button>
+            </div>
         </div>
     );
 };
