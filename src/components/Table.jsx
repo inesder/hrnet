@@ -4,16 +4,34 @@ import TableHeadItem from "./TableHeadItem";
 
 const Table = ({ theadData, tbodyData, customClass }) => {
     const [filterText, setFilterText] = useState("");
+    const [sortedData, setSortedData] = useState(tbodyData);
+    const [sortDirection, setSortDirection] = useState("asc");
+    const [sortedColumn, setSortedColumn] = useState(null);
 
     const handleFilterChange = (e) => {
-        setFilterText(e.target.value);
+        setFilterText(e.target.value.toLowerCase());
     };
 
-    const filteredData = tbodyData.filter((row) => {
-        return row.items.some((item) =>
+    const handleSort = (columnIndex) => {
+        const sorted = [...sortedData].sort((a, b) => {
+            const aValue = a.items[columnIndex]?.toString().toLowerCase();
+            const bValue = b.items[columnIndex]?.toString().toLowerCase();
+            if (sortDirection === "asc") {
+                return aValue > bValue ? 1 : -1;
+            } else {
+                return aValue < bValue ? 1 : -1;
+            }
+        });
+        setSortedData(sorted);
+        setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+        setSortedColumn(columnIndex);
+    };
+
+    const filteredData = sortedData.filter((row) =>
+        row.items.some((item) =>
             item.toString().toLowerCase().includes(filterText)
-        );
-    });
+        )
+    );
 
     return (
         <div className="table-container">
@@ -27,8 +45,14 @@ const Table = ({ theadData, tbodyData, customClass }) => {
             <table className={customClass} id="myTable">
                 <thead>
                     <tr>
-                        {theadData.map((header) => (
-                            <TableHeadItem key={header} item={header} />
+                        {theadData.map((header, index) => (
+                            <TableHeadItem
+                                key={header}
+                                item={header}
+                                onClick={() => handleSort(index)}
+                                sortDirection={sortedColumn === index ? sortDirection : null}
+                                isSorted={sortedColumn === index}
+                            />
                         ))}
                     </tr>
                 </thead>
@@ -39,7 +63,7 @@ const Table = ({ theadData, tbodyData, customClass }) => {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={theadData.length} style={{ textAlign: 'center' }}>
+                            <td colSpan={theadData.length} style={{ textAlign: "center" }}>
                                 No matching employees found.
                             </td>
                         </tr>
