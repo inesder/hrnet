@@ -2,6 +2,7 @@ import '../styles/styles.css';
 import Calendar from '../components/Calendar';
 import DropDownMenu from '../components/DropDownMenu';
 import states from '../datas/states.json'; 
+import departments from '../datas/departments.json';
 import Modal from '../components/Modal';
 import useModal from '../useModal';
 import { useDispatch } from 'react-redux';
@@ -26,7 +27,7 @@ function CreateEmployee() {
       navigate('/employeelist'); // Redirige après un délai
     }, 1000);
   };
-
+ 
   return (
     <div>
       <div className="title">
@@ -99,20 +100,13 @@ function CreateEmployee() {
             />
             {errors.zipCode && <span>{errors.zipCode.message}</span>}
           </fieldset>
-
           <label htmlFor="department">Department</label>
-          <select
-            id="department"
-            {...register('department', { required: 'Department is required' })}
-          >
-            <option value="">Select a department</option>
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
-          {errors.department && <span>{errors.department.message}</span>}
+            <DropDownMenu
+              label="Department"
+              data={departments}
+              onChange={(value) => setValue('department', value, { shouldValidate: true })}
+            />
+            {errors.department && <span>Department is required</span>}
 
           <button type="submit" className="modal-toggle">
             Save
