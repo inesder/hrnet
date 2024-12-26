@@ -24,7 +24,7 @@ function CreateEmployee() {
     toggle(); // Affiche la modale
     setTimeout(() => {
       navigate('/employeelist'); // Redirige après un délai
-    }, 2000); // Attendez 2 secondes pour laisser le temps d'afficher la modale
+    }, 1000);
   };
 
   return (
