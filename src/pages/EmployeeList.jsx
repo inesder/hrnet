@@ -37,7 +37,7 @@ function EmployeeList() {
     return (
         <div id="employee-div" className="container">
             <h1>Current Employees</h1>
-            <Table theadData={theadData} tbodyData={tbodyData} customClass="employees"/>
+            <Table theadData={theadData} tbodyData={tbodyData}/>
             <Link to="/">Home</Link>
             <button onClick={handleClearEmployees}> delete</button>
         </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TableRow from "./TableRow";
 import TableHeadItem from "./TableHeadItem";
 
-const Table = ({ theadData, tbodyData, customClass }) => {
+const Table = ({ theadData, tbodyData }) => {
     const [filterText, setFilterText] = useState("");
     const [sortedData, setSortedData] = useState(tbodyData);
     const [sortDirection, setSortDirection] = useState("asc");
@@ -81,7 +81,7 @@ const Table = ({ theadData, tbodyData, customClass }) => {
                     <option value="100">100</option>
                 </select>
             </div>
-            <table className={customClass} id="myTable">
+            <table className="table" id="myTable">
                 <thead>
                     <tr>
                         {theadData.map((header, index) => (
