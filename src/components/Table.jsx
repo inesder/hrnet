@@ -8,7 +8,7 @@ const Table = ({ theadData, tbodyData, customClass }) => {
     const [sortDirection, setSortDirection] = useState("asc");
     const [sortedColumn, setSortedColumn] = useState(null);
     const [currentPage, setCurrentPage] = useState(1); 
-    const rowsPerPage = 4;
+    const [rowsPerPage, setRowsPerPage] = useState(4);
 
     const handleFilterChange = (e) => {
         setFilterText(e.target.value.toLowerCase());
@@ -53,6 +53,11 @@ const Table = ({ theadData, tbodyData, customClass }) => {
         }
     };
 
+    const handleRowsPerPageChange = (e) => {
+        setRowsPerPage(parseInt(e.target.value)); 
+        setCurrentPage(1); 
+    };
+
     return (
         <div className="table-container">
             <input
@@ -62,6 +67,20 @@ const Table = ({ theadData, tbodyData, customClass }) => {
                 onChange={handleFilterChange}
                 value={filterText}
             />
+            <div className="pagination-controls">
+                <label htmlFor="rowsPerPage">Entries per page: </label>
+                <select
+                    id="rowsPerPage"
+                    value={rowsPerPage}
+                    onChange={handleRowsPerPageChange}
+                >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
             <table className={customClass} id="myTable">
                 <thead>
                     <tr>
