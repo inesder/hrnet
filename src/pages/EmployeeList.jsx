@@ -35,7 +35,7 @@ function EmployeeList() {
     }
 
     return (
-        <div id="employee-div" className="container">
+        <div id="employee-div" className="container-table">
             <h1>Current Employees</h1>
             <Table theadData={theadData} tbodyData={tbodyData}/>
             <Link to="/">Home</Link>

@@ -1,6 +1,18 @@
 body{
-background-color: #729762;
+background-color: #89A8B2;
+font-family: "Roboto", serif;
+}
 
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+}
+
+.form-header {
+  text-align: center;
 }
 
 .title {
@@ -9,8 +21,87 @@ background-color: #729762;
     justify-content: center;
 }
 
+.container-form {
+    justify-content: center;
+    background-color: #F1F0E8;
+    justify-self: center;
+    border-radius: 15px;
+    width: 35%;
+    padding: 20px 50px;
+    box-shadow: 1px 2px 8px black;
+}
 
-.container {
+.firstName {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.lastName {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.birth {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.startDate {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.street {
+  grid-area: 3 / 1 / 4 / 2;;
+}
+
+.city {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.state {
+  grid-area: 4 / 1 / 5 / 2;
+}
+
+.zipCode {
+  grid-area: 4 / 2 / 5 / 3;
+}
+
+.department {
+  grid-area: 5 / 1 / 6 / 2;
+}
+label{
+  font-weight: 500;
+}
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 0.5fr);
+  grid-column-gap: 50px;
+  grid-row-gap: 15px;
+  padding-bottom: 40px;
+}
+.button-container {
+  text-align: center;
+}
+.button {
+  background-color: #F1F0E8; 
+  border: 2px solid #89A8B2;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px #89A8B2;
+  font-weight: 700;
+}
+
+.button:hover {
+  background-color: #89A8B2;
+  color: white;
+}
+
+.container-table {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,6 +109,7 @@ background-color: #729762;
     background-color: #E7F0DC;
     justify-self: center;
     border-radius: 15px;
+    width: 80%;
 }
 
 label {
