@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { clearEmployees } from '../features/employeeSlice';
-import {Table} from 'inesder-table'
+import {Table} from 'inesder-table';
+
 
 function EmployeeList() {
     const employees = useSelector((state) => state.employees.employees);
@@ -36,10 +37,10 @@ function EmployeeList() {
 
     return (
         <div id="employee-div" className="container-table">
-            <h1>Current Employees</h1>
-            <Table theadData={theadData} tbodyData={tbodyData}/>
+            <h2>Current employees</h2>
             <Link to="/">Home</Link>
-            <button onClick={handleClearEmployees}> delete</button>
+            <Table theadData={theadData} tbodyData={tbodyData}/>
+            <button className='button' onClick={handleClearEmployees}> delete</button>
         </div>
     );
 }
