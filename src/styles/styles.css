@@ -121,11 +121,6 @@ form {
   padding: 8px 16px;
 }
 
-.table th {
-  background-color:#89A8B2 !important;
-}
-
-
 label {
     display: block;
     margin-top: 1rem;
@@ -187,9 +182,7 @@ label {
     background: transparent;
   }
 
-  .pagination button {
-    background-color: #89A8B2 !important;
-  }
+
 
   .pagination button:disabled {
     background-color: #ddd !important;
