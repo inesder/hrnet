@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const Modal = ({ isShowing, hide }) =>
+const Modal = ({ isShowing }) =>
   isShowing
     ? ReactDOM.createPortal(
         <>
@@ -9,13 +9,6 @@ const Modal = ({ isShowing, hide }) =>
             <div className="modal-wrapper">
               <div className="modal">
                 <div className="modal-header">
-                  <button
-                    type="button"
-                    className="modal-close-button"
-                    onClick={hide}
-                  >
-                    <span>&times;</span>
-                  </button>
                 </div>
                 <div className="modal-body">Employee created!</div>
               </div>

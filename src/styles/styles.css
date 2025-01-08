@@ -187,3 +187,11 @@ label {
   .pagination button:disabled {
     background-color: #ddd !important;
   }
+
+  .modal-body {
+    font-weight: 700;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 22px;
+  }
