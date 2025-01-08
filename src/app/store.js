@@ -14,7 +14,9 @@ const store = configureStore({
   reducer: {
     employees: persistedReducer, 
   },
+  middleware:() => []
 });
+
 
 export const persistor = persistStore(store);
 export default store;

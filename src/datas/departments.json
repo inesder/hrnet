@@ -1,16 +1,16 @@
 [{
-    "name":"Sales"
-
+    "name":"Sales",
+    "abbreviation":"SA"
 },{
     "name":"Marketing",
-    "abreviation":""
+    "abbreviation":"MA"
 },{
     "name":"Engineering",
-    "abreviation":""
+    "abbreviation":"EN"
 },{
     "name":"Human Resources",
-    "abreviation":""
+    "abbreviation":"HR"
 },{
     "name":"Legal",
-    "abreviation":""
+    "abbreviation":"LE"
 }]

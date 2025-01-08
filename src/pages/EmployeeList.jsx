@@ -15,7 +15,7 @@ function EmployeeList() {
 
     // Vérifie si employees est vide
     const tbodyData = employees.length > 0 ? employees.map((employee, index) => ({
-        id: index.toString(),
+        id: employee.id || index.toString(),
         items: [
             employee.firstName,
             employee.lastName,

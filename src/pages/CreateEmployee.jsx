@@ -109,12 +109,12 @@ function CreateEmployee() {
             />
             {errors.department && <span>Department is required</span>}</div>
 
-          
-        </form>
-        <div className='button-container'>
+          <div className='button-container'>
         <button type="submit" className="button">
             Save
           </button></div>
+        </form>
+        
         <Modal isShowing={isShowing} hide={toggle} />
       </div>
     </div>
