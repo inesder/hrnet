@@ -40,7 +40,7 @@ function EmployeeList() {
         <div id="employee-div" className="container-table">
             <h2>Current employees</h2>
             <Link to="/">Home</Link>
-            <Table thBackgroundColor='#89A8B2' buttonBackgroundColor='#89A8B2' theadData={theadData} tbodyData={tbodyData}/>
+            <Table thBackgroundColor='#475b61' buttonBackgroundColor='#89A8B2' theadData={theadData} tbodyData={tbodyData}/>
             <button className='button' onClick={handleClearEmployees}> delete</button>
         </div>
     );
