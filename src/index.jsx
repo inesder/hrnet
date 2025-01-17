@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './app/store';
 import CreateEmployee from './pages/CreateEmployee';
 import EmployeeList from './pages/EmployeeList'
+import '../src/styles/styles.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
